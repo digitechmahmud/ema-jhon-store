@@ -9,7 +9,7 @@ const Orders = () => {
     const { products, initialCart } = useLoaderData();
     const [cart, setCart] = useState(initialCart);
     const handleRemoveItem = (id) => {
-        const restItem = cart.filter(product => product.id !== id);
+        const restItem = cart.filter(product => product._id !== id);
         setCart(restItem);
         removeFromDb(id);
     }
@@ -21,7 +21,7 @@ const Orders = () => {
         <div className='shop-container'>
             <div className='orders-container'>
                 {
-                    cart.map(product =><ReviewItem key={product.id} product={product} handleRemoveItem={handleRemoveItem}></ReviewItem>)
+                    cart.map(product =><ReviewItem key={product._id} product={product} handleRemoveItem={handleRemoveItem}></ReviewItem>)
                 }
                 {
                     cart.length === 0 && <h2>Your Cart is empty Please <Link to='/'>Shop More</Link></h2>
